@@ -41,7 +41,16 @@ class Sites extends Component
     {
         // $this->loadSites();
     }
+    function create()
+    {
+        $this->form->reset();
+        // // $this->edit_id = $id;
 
+        // $site = Site::where('id', $this->form->id)->first();
+
+        //  $site->name;
+        // $this->edit_description = $site->description;
+    }
     function edit(?Site $site)
     {
         $this->form->setSite($site);
@@ -118,7 +127,7 @@ class Sites extends Component
     public $q;
     public function render()
     {
-        // sleep(1);
+        sleep(1);
         if (!$this->q) {
             $sites = Site::orderBy('id', 'desc')->paginate($this->pagination);
         } else {
