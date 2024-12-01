@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Forms\SiteForm;
 use App\Models\Site;
+use Livewire\Attributes\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -11,86 +13,93 @@ class Sites extends Component
 {
     // public $sites;
 
-    #[Validate('required|unique:sites,name,', as: 'Nom du site')]
-    public $create_name;
-    #[Validate('required', as: 'Description du site')]
-    public $create_description;
+    public SiteForm $form;
 
-    public $edit_id = '';
-    public $edit_name;
-    public $edit_description;
+    // public $edit_id = '';
+    // public $edit_name;
+    // public $edit_description;
 
-    public $delete_id = '';
+    // public $delete_id = '';
 
-    function loadSites()
-    {
-        // $this->sites = Site::all();
-        // $this->sites = Site::orderBy('id', 'asc')->paginate(3);
-    }
+    // function loadSites()
+    // {
+    //     // $this->sites = Site::all();
+    //     // $this->sites = Site::orderBy('id', 'asc')->paginate(3);
+    // }
     function resetFields()
     {
-        $this->create_name = '';
-        $this->create_description = '';
+        // $this->create_name = '';
+        // $this->create_description = '';
 
-        $this->edit_id = '';
-        $this->edit_name = '';
-        $this->edit_description = '';
+        // $this->edit_id = '';
+        // $this->edit_name = '';
+        // $this->edit_description = '';
 
-        $this->delete_id = '';
+        // $this->delete_id = '';
     }
     function mount()
     {
-        $this->loadSites();
+        // $this->loadSites();
     }
 
-    function edit($id)
+    function edit(?Site $site)
     {
-        $this->edit_id = $id;
+        $this->form->setSite($site);
+        // // $this->edit_id = $id;
 
-        $site = Site::where('id', $id)->first();
+        // $site = Site::where('id', $this->form->id)->first();
 
-        $this->edit_name = $site->name;
-        $this->edit_description = $site->description;
+        //  $site->name;
+        // $this->edit_description = $site->description;
     }
-    function delete($id)
+    function delete(?Site $site)
     {
-        $this->delete_id = $id;
+        $this->form->setSite($site);
+        // $this->delete_id = $id;
     }
     function show() {}
 
     function createSite()
     {
-        $this->validate();
+        // $this->validate();
 
-        $site = new Site();
-        $site->name = $this->create_name;
-        $site->description = $this->create_description;
+        // $site = new Site();
+        // $site->name = $this->form;
+        // $site->description = $this->create_description;
+        $this->form->store();
 
-        $site->save();
-        $this->loadSites();
+        // $site->save();
+        // $this->loadSites();
         $this->dispatch('close-modal');
     }
     function editSite()
     {
-        $this->validate([
-            'edit_name' => 'required|unique:sites,name,' . $this->edit_id,
-            'edit_description' => 'required',
-        ]);
+        // $this->form->setSite($site);
+        $this->form->update();
 
-        $site = Site::where('id', $this->edit_id)->first();
+        // $this->validate([
+        //     'edit_name' => 'required|unique:sites,name,' . $this->edit_id,
+        //     'edit_description' => 'required',
+        // ]);
 
-        $site->name = $this->edit_name;
-        $site->description = $this->edit_description;
+        // $site = Site::where('id', $this->edit_id)->first();
 
-        $site->save();
-        $this->loadSites();
+        // $site->name = $this->edit_name;
+        // $site->description = $this->edit_description;
+
+        // $site->save();
+        // $this->loadSites();
         $this->dispatch('close-modal');
     }
     function destroy()
     {
-        $site = Site::findOrFail($this->delete_id);
-        $site->delete();
-        $this->loadSites();
+        // dd($this->form);
+        // $this->form->setSite($site);
+        $this->form->destroy();
+
+        // // $site = Site::findOrFail($this->delete_id);
+        // // $site->delete();
+        // // $this->loadSites();
         $this->dispatch('close-modal');
     }
 
@@ -109,7 +118,7 @@ class Sites extends Component
     public $q;
     public function render()
     {
-        sleep(1);
+        // sleep(1);
         if (!$this->q) {
             $sites = Site::orderBy('id', 'desc')->paginate($this->pagination);
         } else {

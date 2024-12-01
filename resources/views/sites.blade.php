@@ -5,21 +5,19 @@
         </h2>
     </x-slot>
 
-    <div class="py-6">
+    <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-3">
+            {{-- <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-3">
                 <div class="p-6 text-gray-900">
                     {{ __('Sites Page!') }}
                 </div>
-            </div>
-            <br>
+            </div> --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <livewire:sites />
                     {{-- <livewire:pages.sites.index /> --}}
                 </div>
             </div>
-            <br>
         </div>
     </div>
 
