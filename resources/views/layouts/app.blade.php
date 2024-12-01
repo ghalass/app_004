@@ -14,6 +14,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet" type="text/css">
 
     @stack('styles')
     @livewireStyles
@@ -40,6 +41,28 @@
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
+
+    {{-- Toastr Script for Livewire --}}
+    {{-- @script --}}
+    <script>
+        toastr.options = {
+            "progressBar": true,
+            "closeButton": true,
+        };
+        window.addEventListener('success', event => {
+            toastr.success(event.detail[0].message);
+        });
+        window.addEventListener('warning', event => {
+            toastr.warning(event.detail[0].message);
+        });
+        window.addEventListener('error', event => {
+            toastr.error(event.detail[0].message);
+        });
+        window.addEventListener('info', event => {
+            toastr.info(event.detail[0].message);
+        });
+    </script>
+    {{-- @endscript --}}
 
     {{-- Connect component file js --}}
     @stack('scripts')

@@ -80,6 +80,7 @@ class Sites extends Component
         // $site->save();
         // $this->loadSites();
         $this->dispatch('close-modal');
+        $this->dispatch('success', ['message' => 'Ajouté avec succès!']);
     }
     function editSite()
     {
@@ -99,6 +100,7 @@ class Sites extends Component
         // $site->save();
         // $this->loadSites();
         $this->dispatch('close-modal');
+        $this->dispatch('info', ['message' => 'Modifié avec succès!']);
     }
     function destroy()
     {
@@ -110,6 +112,7 @@ class Sites extends Component
         // // $site->delete();
         // // $this->loadSites();
         $this->dispatch('close-modal');
+        $this->dispatch('warning', ['message' => 'Supprimé avec succès!']);
     }
 
     // Q in updatedQ for q variable of search
