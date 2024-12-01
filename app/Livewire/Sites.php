@@ -109,6 +109,7 @@ class Sites extends Component
     public $q;
     public function render()
     {
+        sleep(1);
         if (!$this->q) {
             $sites = Site::orderBy('id', 'desc')->paginate($this->pagination);
         } else {

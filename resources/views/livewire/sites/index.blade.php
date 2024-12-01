@@ -45,7 +45,7 @@
         </div>
     @endforeach
 
-    <span>{{ $sites->links() }}</span>
+    <span class="">{{ $sites->onEachSide(1)->links() }}</span>
 
 
 
