@@ -1,6 +1,5 @@
 <div class="">
-    <h1>LISTE SITES</h1>
-
+    <h1>LISTE SITES</span></h1>
 
     <div class="flex items-center mb-2 gap-2">
         <button data-modal-target="create-modal" data-modal-toggle="create-modal"

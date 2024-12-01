@@ -94,13 +94,21 @@ class Sites extends Component
         $this->dispatch('close-modal');
     }
 
+    // Q in updatedQ for q variable of search
+    public function updatedQ()
+    {
+        $this->resetPage();
+    }
+    public function updatedPagination()
+    {
+        $this->resetPage();
+    }
     use WithPagination;
 
     public $pagination = 10;
     public $q;
     public function render()
     {
-        // $sites = Site::paginate($this->pagination);
         if (!$this->q) {
             $sites = Site::orderBy('id', 'desc')->paginate($this->pagination);
         } else {
@@ -109,8 +117,9 @@ class Sites extends Component
                 ->orderBy('id', 'desc')
                 ->paginate($this->pagination);
         }
+
         return view('livewire.sites.index', [
-            'sites' => $sites
+            'sites' => $sites,
         ]);
     }
 }
