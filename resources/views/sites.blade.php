@@ -15,12 +15,12 @@
             <br>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <livewire:pages.sites.index />
+                    <livewire:sites />
+                    {{-- <livewire:pages.sites.index /> --}}
                 </div>
             </div>
             <br>
         </div>
     </div>
-
 
 </x-app-layout>

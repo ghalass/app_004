@@ -5,9 +5,7 @@ use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 
 new class extends Component {
-    public $sites = null;
-
-    public $title = 'no title';
+    public $sites;
 
     #[Validate('required|unique:sites,name,', as: 'Nom du site')]
     public $create_name;
@@ -23,6 +21,7 @@ new class extends Component {
     function loadSites()
     {
         $this->sites = Site::all();
+        // $this->sites = Site::orderBy('id', 'asc')->paginate(3);
     }
     function resetFields()
     {
@@ -123,6 +122,8 @@ new class extends Component {
             <p>{{ $site->name }}</p>
         </div>
     @endforeach
+
+
 
     <!-- Create modal -->
     @include('livewire.pages.sites.modal-create')
