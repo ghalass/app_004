@@ -115,6 +115,11 @@ class Sites extends Component
         $this->dispatch('warning', ['message' => 'Supprimé avec succès!']);
     }
 
+    function clearSerach()
+    {
+        $this->q = '';
+    }
+
     // Q in updatedQ for q variable of search
     public function updatedQ()
     {

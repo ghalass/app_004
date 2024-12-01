@@ -25,11 +25,13 @@
                     <div class="col-span-2">
                         <label for="create_name"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nom</label>
-                        <input wire:model="form.name" id="create_name"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        <input wire:model.blur="form.name" id="create_name"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 "
                             placeholder="Nom du site">
                         @error('form.name')
-                            <p class="text-red-400">{{ $message }}</p>
+                            <p class="text-red-300 italic text-sm">
+                                {{ $message }}
+                            </p>
                         @enderror
                     </div>
 
@@ -37,16 +39,18 @@
                         <label for="create_description"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Description di site</label>
-                        <textarea wire:model='form.description' id="create_description" rows="4"
+                        <textarea wire:model.blur='form.description' id="create_description" rows="4"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Saisir une description pour le site ici"></textarea>
                         @error('form.description')
-                            <p class="text-red-400">{{ $message }}</p>
+                            <p class="text-red-300 italic text-sm">
+                                {{ $message }}
+                            </p>
                         @enderror
                     </div>
                 </div>
                 <button type="submit"
-                    class="py-2.5 px-5 me-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 inline-flex items-center">
+                    class="py-2.5 px-5 me-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700  dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 inline-flex items-center">
 
                     <div wire:loading.remove wire:target='createSite' class="flex">
                         <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
