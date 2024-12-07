@@ -9,6 +9,8 @@ use Livewire\Form;
 
 class SiteForm extends Form
 {
+    public ?Site $site;
+
     public $id = "";
     #[Rule('required|unique:sites,name,', as: 'Nom du site')]
     public $name;
@@ -18,6 +20,7 @@ class SiteForm extends Form
     function setSite(Site $site)
     {
         $this->id = $site->id;
+        $this->site = $site->site;
         $this->name = $site->name;
         $this->description = $site->description;
     }

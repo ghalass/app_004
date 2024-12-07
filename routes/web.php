@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\TypeparcController;
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
 
 Route::view('/', 'welcome');
 
@@ -19,16 +19,9 @@ Route::get('/sites', [SiteController::class, 'index'])
     ->middleware(['auth'])
     ->name('sites');
 
-
-// Route::middleware('auth')->group(function () {
-//     Volt::route('sites', 'livewire.pages.sites')
-//         ->name('sites');
-// });
-
-
-
-Route::view('typeparcs', 'typeparcs')
+Route::get('/typeparcs', [TypeparcController::class, 'index'])
     ->middleware(['auth'])
     ->name('typeparcs');
+
 
 require __DIR__ . '/auth.php';

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\SiteForm;
 use App\Models\Site;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -51,21 +52,32 @@ class Sites extends Component
         //  $site->name;
         // $this->edit_description = $site->description;
     }
-    function edit(?Site $site)
-    {
-        $this->form->setSite($site);
-        // // $this->edit_id = $id;
 
-        // $site = Site::where('id', $this->form->id)->first();
-
-        //  $site->name;
-        // $this->edit_description = $site->description;
-    }
-    function delete(?Site $site)
+    #[On('edit-site')]
+    function editSite($id)
     {
+        $this->js('console.log("edit-site dispatch")');
+        $site = Site::findOrFail($id);
         $this->form->setSite($site);
-        // $this->delete_id = $id;
+        // $this->js('console.log(' . $site . ')');
     }
+
+
+    // function edit(?Site $site)
+    // {
+    //     $this->form->setSite($site);
+    //     // // $this->edit_id = $id;
+
+    //     // $site = Site::where('id', $this->form->id)->first();
+
+    //     //  $site->name;
+    //     // $this->edit_description = $site->description;
+    // }
+    // function delete(?Site $site)
+    // {
+    //     $this->form->setSite($site);
+    //     // $this->delete_id = $id;
+    // }
     function show() {}
 
     function createSite()
@@ -82,26 +94,26 @@ class Sites extends Component
         $this->dispatch('close-modal');
         $this->dispatch('success', ['message' => 'Ajouté avec succès!']);
     }
-    function editSite()
-    {
-        // $this->form->setSite($site);
-        $this->form->update();
+    // function editSite()
+    // {
+    //     // $this->form->setSite($site);
+    //     $this->form->update();
 
-        // $this->validate([
-        //     'edit_name' => 'required|unique:sites,name,' . $this->edit_id,
-        //     'edit_description' => 'required',
-        // ]);
+    //     // $this->validate([
+    //     //     'edit_name' => 'required|unique:sites,name,' . $this->edit_id,
+    //     //     'edit_description' => 'required',
+    //     // ]);
 
-        // $site = Site::where('id', $this->edit_id)->first();
+    //     // $site = Site::where('id', $this->edit_id)->first();
 
-        // $site->name = $this->edit_name;
-        // $site->description = $this->edit_description;
+    //     // $site->name = $this->edit_name;
+    //     // $site->description = $this->edit_description;
 
-        // $site->save();
-        // $this->loadSites();
-        $this->dispatch('close-modal');
-        $this->dispatch('info', ['message' => 'Modifié avec succès!']);
-    }
+    //     // $site->save();
+    //     // $this->loadSites();
+    //     $this->dispatch('close-modal');
+    //     $this->dispatch('info', ['message' => 'Modifié avec succès!']);
+    // }
     function destroy()
     {
         // dd($this->form);
@@ -123,30 +135,36 @@ class Sites extends Component
     // Q in updatedQ for q variable of search
     public function updatedQ()
     {
-        $this->resetPage();
+        // $this->resetPage();
     }
     public function updatedPagination()
     {
-        $this->resetPage();
+        // $this->resetPage();
     }
-    use WithPagination;
+    // use WithPagination;
 
     public $pagination = 10;
     public $q;
     public function render()
     {
-        sleep(1);
-        if (!$this->q) {
-            $sites = Site::orderBy('id', 'desc')->paginate($this->pagination);
-        } else {
-            $sites = Site::where('name', 'like', '%' . $this->q . '%')
-                ->orWhere('description', 'like', '%' . $this->q . '%')
-                ->orderBy('id', 'desc')
-                ->paginate($this->pagination);
-        }
+        // sleep(1);
+        // if (!$this->q) {
+        // $sites = Site::orderBy('id', 'desc')->paginate($this->pagination);
+        // } else {
+        //     $sites = Site::where('name', 'like', '%' . $this->q . '%')
+        //         ->orWhere('description', 'like', '%' . $this->q . '%')
+        //         ->orderBy('id', 'desc')
+        //         ->paginate($this->pagination);
+        // }
 
-        return view('livewire.sites.index', [
-            'sites' => $sites,
-        ]);
+        // if (!$this->q) {
+        //     $sites = Site::orderBy('id', 'desc')->get();
+        // } else {
+        //     $sites = Site::where('name', 'like', '%' . $this->q . '%')
+        //         ->orWhere('description', 'like', '%' . $this->q . '%')
+        //         ->orderBy('id', 'desc')->get();
+        // }
+
+        return view('livewire.sites.index');
     }
 }
